@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+      <!-- Biblioteca para a vinculacao de param. do jsf 
+      em html -->
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+              <title>CONTROLE DE AVALIAÇÕES</title>
+    </head>
+    <body jsf:id="body">
+        <h1>CONTROLE DE AV</h1>
+        <form jsf:id="form">
+            <div class="container">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toogle" type="button"
+                            id="menu1" data-toogle="dropdown"> Cursos <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <ui:repeat var="listaCurso" value="#{controle_Avaliacoes.listarCurso()}">
+                            <li role="presentation">
+                                <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setCurso(listaCurso)}">
+                                    #{listaCurso.nomeCurso}
+                                </a>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </div>
+            </div>
+            <br />
+            <div style="width: 60%">
+                <div class="form-group">
+                    <label>Nome do Curso</label>
+                    <input type="text" placeholder="Entre com o nome do Curso"
+                           class="form-control"
+                           jsf:value="#{controle_Avaliacoes.curso.nomeCurso}"/>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>Quantidade de Semestres</label>
+                    <input type="text" placeholder="Entre com o número de Semestres"
+                           class="form-control"
+                           jsf:value="#{controle_Avaliacoes.curso.qtdeSemestres}"/>
+                </div>
+                <br />
+                <a href="#" class="btn btn-primary" style="margin-right: 10px"
+                   jsf:action="#{controle_Avaliacoes.inserirCurso()}">Salvar</a>
+                <a href="#" class="btn btn-success" style="margin-right: 10px"
+                   jsf:action="#{controle_Avaliacoes.alterarCurso()}">Alterar</a>
+                <a href="#" class="btn btn-danger"
+                   jsf:action="#{controle_Avaliacoes.excluirCurso()}"</a>
+            </div>
+            <br />
+            <br />
+            <div style="width: 60%">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Nome do Curso</td>
+                        <td>Número de Semestres</td>
+                    </tr>
+                    <ui:repeat var="c" value="#{controle_Avaliacoes.listarCurso}">
+                        <tr>
+                            <td>#{c.nomeCurso}</td>
+                            <td>#{c.qtdeSemestres}</td>
+                        </tr>
+                    </ui:repeat>
+                </table>
+            </div>
+        </form>
+        <br />
+        <br />
+        <br />
+        <br />
+    </body>
+</html>

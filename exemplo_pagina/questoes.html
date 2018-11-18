@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Cursos</title>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        
+        <style>
+            html, body {
+                margin:0;
+                padding:0;
+                background-color: azure;
+                
+            }
+
+            body, footer {
+                font-family: 'Libre Baskerville', serif;
+                height: 100%;
+                
+            }
+
+            section, header, footer, nav {
+                display:block;
+            }
+
+            main {
+                width: 100%;
+            }
+
+            header {
+                float: left;
+                width: 100%;
+                height: 200px;
+                background-image: url(../imagens/escolar3.jpg);
+                position: relative;
+                margin-bottom: 5px;
+            }
+            
+            header h1 {
+                margin-top: 50px;
+                width: 100%;
+                text-align: center;
+                font-size: 64px; 
+                font-family: Arial, sans-serif;
+                text-shadow: 1px 1px;
+                color:blue;
+            }
+            
+            nav ul{
+                margin: 0; 
+                padding: 0;
+                width: 100%;
+            }
+            
+            nav ul li{
+                list-style-type: none;
+            }
+            
+            nav ul li a {
+                font-family: 'Indie Flower', cursive;
+                display: block;
+                text-decoration: none;
+                color: white;
+                background-color: rgb(134,186,249);
+                margin-bottom: 3px;
+                height: 5%;
+                font-size: 200%;
+                text-align: left;
+            }
+            
+            nav ul li a:hover {
+                background-color: deepskyblue;
+            }
+            
+            form {
+                align-self: center;
+                position: relative;
+                display: block;
+                color: rgb(134,186,249);
+            }
+            
+            fieldset {
+                width: 400px;
+                height: 250px;
+                margin-left: 10px;
+            }
+            
+            legend {
+                font-style: bold;
+                font-family: 'Libre Baskerville', serif;
+            }
+            
+            form label {
+                position: relative;
+                left: 20px;
+                margin-right: 5px;
+            }
+            
+            form input {
+                position: relative;
+                left: 95px;
+                margin-top: 2px;
+                width: 100px;
+                margin-left: 10px;
+            }
+            
+            .conteudo {
+                margin-left: 20px;
+                width: 78%;
+                height: 730px;
+                background-color: azure;
+                float: right;
+                position: relative;
+            }
+            
+            .conteudo h1 {
+                font-size: 40px;
+                color: blue;
+            }
+            
+            .conteudo h2 {
+                font-size: 20px;
+            }
+            
+            .conteudo ul {
+                list-style-position: inside;
+            }
+            
+            .conteudo p{
+                text-align: justify;
+            }
+            
+            .menu {
+                width: 20%;
+                height: 100%;
+                float: left;
+                position: relative;
+            }
+            
+            .menu img {
+                width: 100%;
+            }
+
+            .apoio {
+                float: right;
+                background-color: rgb(134,186,249);
+                width: 500px;
+                height: 600px;
+                position: relative;
+                margin-left: 130px;
+                margin-top: -730px;
+                margin-right: 100px;
+            }
+            
+            footer {
+                clear: both;
+                width: 100%;
+                height: 5%;
+                background-color: rgb(134,186,249);;
+            }
+            
+            footer p {
+                text-align: center;
+                font-size: 0.8em;
+                color: aliceblue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1>Controle de Avaliações</h1>    
+                
+            </header>
+            
+            <section class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
+                        </li>
+                        <li><a href="curso.html">Curso</a>
+                        </li>
+                        <li><a href="disciplina.html">Disciplinas</a>
+                        </li>
+                        <li><a href="escola.html">Sobre a Escola</a>
+                        </li>
+                        <li><a href="contato.html">Contato</a>
+                        </li>
+                        <li><a href="fotos.html">
+                            Fotos
+                            <img src="../imagens/faculdade2ed.jpg">
+                            </a></li>
+                    </ul>
+                </nav>
+            
+            </section>
+            <section class="conteudo">
+                <br>
+                <br>
+                
+                <h1>Gerenciador de Questões</h1><br>
+                <div class="conteiner">
+                    <form action="destino.html" method="post">
+                        <fieldset>
+                            <legend class="text-primary">Formulário de Questões</legend>
+                            <label for="nome_curso">Código da Disciplina</label>
+                            <input class="form-control" type="text" name="fk_disciplina" id="fk_disciplina" required placeholder="Código da Disciplina"><br><br>
+                            <label for="des-questao">Descrição da Questão</label>
+                            <input class="form-control" type="text" name="des-questao" id="des-questao" required placeholder="Descrição da Questão"><br><br>
+                            <label for="resp-questao">Resposta da Questão</label>
+                            <input class="form-control" type="text" name="resp-questao" id="resp-questao" required placeholder="Resposta da Questão"><br><br>
+                            <label for="tipo-avaliacao">Tipo de Avaliação</label>
+                            <input class="form-control" type="text" name="tipo-avaliacao" id="tipo-avaliacao" required placeholder="Tipo de Avaliação"><br><br>
+                            
+                            <div class="form-inline">
+                                <input class="btn btn-primary pull-left" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar">
+                                <input class="btn btn-primary pull-right" value="Buscar" id="buscar" name="buscar">
+                                <input class="btn btn-primary pull-right" value="Deletar" id="deletar" name="deletar">
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+                
+            <section class="apoio">  
+                <div class="panel panel-default">
+                    
+                </div>
+            </section>
+            <footer>
+                <br>
+                <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
+            </footer>
+        </main>
+    </body>
+</html>

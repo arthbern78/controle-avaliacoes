@@ -1,0 +1,181 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Curso de CSS</title>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet">
+        
+        <style>
+            html, body {
+                margin:0;
+                padding:0;
+                background-color: azure;
+                
+            }
+
+            body, footer {
+                font-family: 'Libre Baskerville', serif;
+                height: 100%;
+                
+            }
+
+            section, header, footer, nav {
+                display:block;
+            }
+
+            main {
+                width: 100%;
+            }
+
+            header {
+                float: left;
+                width: 100%;
+                height: 200px;
+                background-image: url(../imagens/escolar3.jpg);
+                position: relative;
+                margin-bottom: 5px;
+            }
+            
+            header h1 {
+                width: 100%;
+                text-align: center;
+                font-size: 64px; 
+                font-family: Arial, sans-serif;
+                text-shadow: 1px 1px;
+                color:blue;
+            }
+            
+            nav ul{
+                margin: 0; 
+                padding: 0;
+                width: 100%;
+            }
+            
+            nav ul li{
+                list-style-type: none;
+            }
+            
+            nav ul li a {
+                font-family: 'Indie Flower', cursive;
+                display: block;
+                text-decoration: none;
+                color: white;
+                background-color: rgb(134,186,249);
+                margin-bottom: 3px;
+                height: 5%;
+                font-size: 200%;
+                text-align: left;
+            }
+            
+            nav ul li a:hover {
+                background-color: deepskyblue;
+            }
+            
+            .conteudo {
+                margin-left: 20px;
+            }
+            
+            .conteudo h1 {
+                font-size: 30px;
+            }
+            
+            .conteudo h2 {
+                font-size: 20px;
+            }
+            
+            .conteudo ul {
+                list-style-position: inside;
+            }
+            
+            .conteudo p{
+                text-align: justify;
+            }
+            
+            .menu {
+                width: 20%;
+                height: 100%;
+                float: left;
+                position: relative;
+            }
+            
+            .menu img {
+                width: 100%;
+            }
+
+            .conteudo {
+                width: 78%;
+                height: 500px;
+                background-color: azure;
+                float: right;
+                position: relative;
+            }
+
+            footer {
+                clear: both;
+                width: 100%;
+                height: 5%;
+                background-color: rgb(134,186,249);
+                position: relative;
+            }
+            
+            footer p {
+                text-align: center;
+                font-size: 0.8em;
+                color: aliceblue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1>Controle de Avaliações</h1>    
+                
+            </header>
+            
+            <section class="menu">
+                <nav>
+                    <ul>
+                        <li><a href="curso.html">Cursos</a>
+                        </li>
+                        <li><a href="disciplina.html">Disciplinas</a>
+                        </li>
+                        <li><a href="questoes.html">Questões</a>
+                        </li>
+                        <li><a href="escola.html">Sobre a Escola</a>
+                        </li>
+                        <li><a href="contato.html">Contato</a>
+                        </li>
+                        <li><a href="fotos.html">
+                            Fotos
+                            <img src="../imagens/faculdade2ed.jpg">
+                            </a></li>
+                    </ul>
+                </nav>
+            
+            </section>
+            <section class="conteudo">
+                <h1>Saiu a lista de prováveis formandos 2018/1</h1>
+                <figure>
+                    <img src="../imagens/faculdadeed.jpg" width="500px" title="Saiu a lista de prováveis formandos 2018/1" style="float:left;margin-right: 30px;border: 1px solid #666">
+                </figure>
+                <h2>Saiba os procedimentos necessários para sua colação de grau:</h2>
+                <p>- Todos os alunos devem solicitar sua colação de grau, exclusivamente via web, pelo Portal do Aluno. Acesse o Requerimento web em Conclusão de Curso e opte pela Solicitação de Formatura em Gabinete ou pela Solicitação de Formatura em Solenidade.</p>
+                <p>- Todos os alunos devem entregar a documentação necessária para colação de grau via Secretaria Acadêmica ou Portal do Aluno (Requerimento Web – Conclusão de Curso – Recebimento de documentos formandos):</p>
+                <ul>
+                    <li>Cópia Simples do Registro Geral (RG);</li>
+                    <li>Cópia Simples do Histórico do Ensino Médio;</li>
+                    <li>Cópia Simples do Certificado de Conclusão do Ensino Médio;</li>
+                    <li>Cópia Simples do Registro Civil (Certidão de Nascimento, Casamento ou Divórcio).</li>
+                </ul>
+                <p style="text-indent: 40px;">A leitura do Guia de Formaturas é uma etapa fundamental no seu processo de formatura. É a partir desse documento que você fica informado sobre os procedimentos necessários para sua colação de grau (Solenidade, Gabinete Coletivo e Individual). Além do Guia, a página de Formaturas dispõe do calendário de formaturas e formulários para as comissões de formatura.</p>
+            </section>
+            
+            <footer>
+                <br>
+                <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
+            </footer>
+        </main>
+    </body>
+</html>
