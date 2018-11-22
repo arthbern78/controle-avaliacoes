@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:jsf="http://xmlns.jcp.org/jsf">
-     
+      <!-- Biblioteca para a vinculacao de param. do jsf 
+      em html -->
     <head>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -142,7 +143,7 @@
                     <ul>
                         <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
                         </li>
-                        <li><a href="disciplina.html">Disciplinas</a>
+                        <li><a href="curso.html">Curso</a>
                         </li>
                         <li><a href="questoes.html">Questões</a>
                         </li>
@@ -161,18 +162,18 @@
             <section class="conteudo">
                 <br>
                 <br>
-                <h1>CADASTRO DE CURSOS</h1>
+                <h1>CADASTRO DE DISCIPLINAS</h1>
                 <form jsf:id="form">
                     <div class="container">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toogle" type="button"
-                                    id="menu1" data-toogle="dropdown"> Cursos <span class="caret"></span>
+                                    id="menu2" data-toogle="dropdown"> Disciplinas <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <ui:repeat var="listaCurso" value="#{controle_Avaliacoes.listarCurso()}">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                                <ui:repeat var="listaDisciplina" value="#{controle_Avaliacoes.listarDisciplinas()}">
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setCurso(listaCurso)}">
-                                            #{listaCurso.nomeCurso}
+                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setDisciplina(listaDisciplina)}">
+                                            #{listaDisciplina.nomeDisciplina}
                                         </a>
                                     </li>
                                 </ui:repeat>
@@ -182,50 +183,71 @@
                     <br />
                     <div style="width: 60%">
                         <div class="form-group">
-                            <label>Nome do Curso</label>
-                            <input type="text" placeholder="Entre com o nome do Curso"
+                            <label>Nome da disciplina</label>
+                            <input type="text" placeholder="Entre com o nome da Disciplina"
                                    class="form-control"
-                                   jsf:value="#{controle_Avaliacoes.curso.nomeCurso}"/>
+                                   jsf:value="#{controle_Avaliacoes.disciplina.nomeDisciplina}"/>
                         </div>
                         <br />
                         <div class="form-group">
-                            <label>Quantidade de Semestres</label>
-                            <input type="text" placeholder="Entre com o número de Semestres"
+                            <label>Semestres</label>
+                            <input type="text" placeholder="Entre com o Semestre da Disciplina"
                                    class="form-control"
-                                   jsf:value="#{controle_Avaliacoes.curso.qtdeSemestres}"/>
+                                   jsf:value="#{controle_Avaliacoes.disciplina.semestre}"/>
+                        </div>
+                        <br />
+                         <div class="form-group">
+                            <label>Código do Curso</label>
+                            <input type="text" placeholder="Entre com o Código do Curso"
+                                   class="form-control"
+                                   jsf:value="#{controle_Avaliacoes.disciplina.fkCurso}"/>
                         </div>
                         <br />
                         <a href="#" class="btn btn-primary" style="margin-right: 10px"
-                           jsf:action="#{controle_Avaliacoes.inserirCurso()}">Salvar</a>
+                           jsf:action="#{controle_Avaliacoes.inserirDisciplina()}">Salvar</a>
                         <a href="#" class="btn btn-success" style="margin-right: 10px"
-                           jsf:action="#{controle_Avaliacoes.alterarCurso()}">Alterar</a>
+                           jsf:action="#{controle_Avaliacoes.alterarDisciplina()}">Alterar</a>
                         <a href="#" class="btn btn-danger"
-                           jsf:action="#{controle_Avaliacoes.excluirCurso()}">Excluir</a>
+                           jsf:action="#{controle_Avaliacoes.excluirQuestoes()}"</a>
                     </div>
                     <br />
                     <br />
                     <div style="width: 60%">
                         <table class="table table-striped">
                             <tr>
-                                <td>Nome do Curso</td>
-                                <td>Número de Semestres</td>
+                                <td>Código da Disciplina</td>
+                                <td>Nome da Disciplina</td>
+                                <td>Semestre da Disciplina</td>
                             </tr>
-                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarCurso}">
+                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarDisciplinas}">
                                 <tr>
-                                    <td>#{c.idCurso}</td>
-                                    <td>#{c.nomeCurso}</td>
-                                    <td>#{c.qtdeSemestres}</td>
+                                    <td>#{c.idDisciplina}</td>
+                                    <td>#{c.nomeDisciplina}</td>
+                                    <td>#{c.semestre}</td>
+                                    <td>#{c.fkCurso}</td>
                                 </tr>
                             </ui:repeat>
                         </table>
                     </div>
-                </form>
-                
+                </form>     
             </section>
                 
             <section class="apoio">  
-                <div class="panel panel-default">
+                <div class="dropdown">
+                    <button type="button" 
+                            data-toggle="dropdown"
+                            class="btn btn-primary"
+                            id="lista_disciplinas"
+
+                    >Lista de Disciplinas </button>
                     
+                    <ul class="dropdown-menu" aria-labelledby="lista_disciplinas">
+                        <li> <a href="home.html">Disciplina 1</a></li>
+                        <li>Disciplina 2</li>
+                        <li>Disciplina 3</li>
+                        <li>Disciplina 4</li>
+                        <li>Disciplina 5</li>
+                    </ul>
                 </div>
             </section>
             <footer>
@@ -233,5 +255,6 @@
                 <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
             </footer>
         </main>
+     
     </body>
 </html>

@@ -142,9 +142,9 @@
                     <ul>
                         <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
                         </li>
-                        <li><a href="disciplina.html">Disciplinas</a>
+                        <li><a href="curso.html">Curso</a>
                         </li>
-                        <li><a href="questoes.html">Questões</a>
+                        <li><a href="disciplina.html">Disciplinas</a>
                         </li>
                         <li><a href="escola.html">Sobre a Escola</a>
                         </li>
@@ -161,18 +161,18 @@
             <section class="conteudo">
                 <br>
                 <br>
-                <h1>CADASTRO DE CURSOS</h1>
+                <h1>CADASTRO DE QUESTÕES</h1>
                 <form jsf:id="form">
                     <div class="container">
                         <div class="dropdown">
                             <button class="btn btn-default dropdown-toogle" type="button"
-                                    id="menu1" data-toogle="dropdown"> Cursos <span class="caret"></span>
+                                    id="menu3" data-toogle="dropdown"> Questões <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <ui:repeat var="listaCurso" value="#{controle_Avaliacoes.listarCurso()}">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
+                                <ui:repeat var="listaQuestoes" value="#{controle_Avaliacoes.lista_questoes}">
                                     <li role="presentation">
-                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setCurso(listaCurso)}">
-                                            #{listaCurso.nomeCurso}
+                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setQuestoes(listaQuestoes)}">
+                                            #{listaQuestoes.idQuestoes}
                                         </a>
                                     </li>
                                 </ui:repeat>
@@ -182,45 +182,63 @@
                     <br />
                     <div style="width: 60%">
                         <div class="form-group">
-                            <label>Nome do Curso</label>
-                            <input type="text" placeholder="Entre com o nome do Curso"
+                            <label>Código da Disciplina</label>
+                            <input type="text" placeholder="Entre com o código da Disciplina"
                                    class="form-control"
-                                   jsf:value="#{controle_Avaliacoes.curso.nomeCurso}"/>
+                                   jsf:value="#{controle_Avaliacoes.questoes.fkDisciplina}"/>
                         </div>
                         <br />
                         <div class="form-group">
-                            <label>Quantidade de Semestres</label>
-                            <input type="text" placeholder="Entre com o número de Semestres"
+                            <label>Descrição da Questão</label>
+                            <input type="text" placeholder="Entre com a Descrição da Questão"
                                    class="form-control"
-                                   jsf:value="#{controle_Avaliacoes.curso.qtdeSemestres}"/>
+                                   jsf:value="#{controle_Avaliacoes.questoes.descricao}"/>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label>Resposta da Questão</label>
+                            <input type="text" placeholder="Entre com a Resposta da Questão"
+                                   class="form-control"
+                                   jsf:value="#{controle_Avaliacoes.questoes.resposta}"/>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label>Tipo de Avaliação</label>
+                            <input type="text" placeholder="Entre com o tipo da Avaliação"
+                                   class="form-control"
+                                   jsf:value="#{controle_Avaliacoes.questoes.tipoAvaliacao}"/>
                         </div>
                         <br />
                         <a href="#" class="btn btn-primary" style="margin-right: 10px"
-                           jsf:action="#{controle_Avaliacoes.inserirCurso()}">Salvar</a>
+                           jsf:action="#{controle_Avaliacoes.inserirQuestoes()}">Salvar</a>
                         <a href="#" class="btn btn-success" style="margin-right: 10px"
-                           jsf:action="#{controle_Avaliacoes.alterarCurso()}">Alterar</a>
+                           jsf:action="#{controle_Avaliacoes.alterarQuestoes()}">Alterar</a>
                         <a href="#" class="btn btn-danger"
-                           jsf:action="#{controle_Avaliacoes.excluirCurso()}">Excluir</a>
+                           jsf:action="#{controle_Avaliacoes.excluirQuestoes()}">Excluir</a>
                     </div>
                     <br />
                     <br />
                     <div style="width: 60%">
                         <table class="table table-striped">
                             <tr>
-                                <td>Nome do Curso</td>
-                                <td>Número de Semestres</td>
+                                <td>Código da Questão</td>
+                                <td>Código da Disciplina</td>
+                                <td>Descrição da Questão</td>
+                                <td>Resposta da Questão</td>
+                                <td>Tipo da Avaliação</td>
                             </tr>
-                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarCurso}">
+                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarQuestoes}">
                                 <tr>
-                                    <td>#{c.idCurso}</td>
-                                    <td>#{c.nomeCurso}</td>
-                                    <td>#{c.qtdeSemestres}</td>
+                                    <td>#{c.idQuestoes}</td>
+                                    <td>#{c.fkDisciplina}</td>
+                                    <td>#{c.descricao}</td>
+                                    <td>#{c.resposta}</td>
+                                    <td>#{c.tipoAvaliacao}</td>
                                 </tr>
                             </ui:repeat>
                         </table>
                     </div>
-                </form>
-                
+                </form>    
             </section>
                 
             <section class="apoio">  
@@ -233,5 +251,6 @@
                 <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
             </footer>
         </main>
+        
     </body>
 </html>
