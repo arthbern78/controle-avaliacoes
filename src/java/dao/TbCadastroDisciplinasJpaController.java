@@ -6,7 +6,6 @@
 package dao;
 
 import dao.exceptions.NonexistentEntityException;
-import dao.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -35,7 +34,7 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TbCadastroDisciplinas tbCadastroDisciplinas) throws PreexistingEntityException, Exception {
+    public void create(TbCadastroDisciplinas tbCadastroDisciplinas) {
         if (tbCadastroDisciplinas.getTbCadastroQuestoesList() == null) {
             tbCadastroDisciplinas.setTbCadastroQuestoesList(new ArrayList<TbCadastroQuestoes>());
         }
@@ -43,10 +42,10 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            TbCadastroCurso fkCurso = tbCadastroDisciplinas.getFkCurso();
-            if (fkCurso != null) {
-                fkCurso = em.getReference(fkCurso.getClass(), fkCurso.getIdCurso());
-                tbCadastroDisciplinas.setFkCurso(fkCurso);
+            TbCadastroCurso fkcurso = tbCadastroDisciplinas.getFkcurso();
+            if (fkcurso != null) {
+                fkcurso = em.getReference(fkcurso.getClass(), fkcurso.getIdCurso());
+                tbCadastroDisciplinas.setFkcurso(fkcurso);
             }
             List<TbCadastroQuestoes> attachedTbCadastroQuestoesList = new ArrayList<TbCadastroQuestoes>();
             for (TbCadastroQuestoes tbCadastroQuestoesListTbCadastroQuestoesToAttach : tbCadastroDisciplinas.getTbCadastroQuestoesList()) {
@@ -55,9 +54,9 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
             }
             tbCadastroDisciplinas.setTbCadastroQuestoesList(attachedTbCadastroQuestoesList);
             em.persist(tbCadastroDisciplinas);
-            if (fkCurso != null) {
-                fkCurso.getTbCadastroDisciplinasList().add(tbCadastroDisciplinas);
-                fkCurso = em.merge(fkCurso);
+            if (fkcurso != null) {
+                fkcurso.getTbCadastroDisciplinasList().add(tbCadastroDisciplinas);
+                fkcurso = em.merge(fkcurso);
             }
             for (TbCadastroQuestoes tbCadastroQuestoesListTbCadastroQuestoes : tbCadastroDisciplinas.getTbCadastroQuestoesList()) {
                 TbCadastroDisciplinas oldFkDisciplinaOfTbCadastroQuestoesListTbCadastroQuestoes = tbCadastroQuestoesListTbCadastroQuestoes.getFkDisciplina();
@@ -69,11 +68,6 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTbCadastroDisciplinas(tbCadastroDisciplinas.getIdDisciplina()) != null) {
-                throw new PreexistingEntityException("TbCadastroDisciplinas " + tbCadastroDisciplinas + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -87,13 +81,13 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             TbCadastroDisciplinas persistentTbCadastroDisciplinas = em.find(TbCadastroDisciplinas.class, tbCadastroDisciplinas.getIdDisciplina());
-            TbCadastroCurso fkCursoOld = persistentTbCadastroDisciplinas.getFkCurso();
-            TbCadastroCurso fkCursoNew = tbCadastroDisciplinas.getFkCurso();
+            TbCadastroCurso fkcursoOld = persistentTbCadastroDisciplinas.getFkcurso();
+            TbCadastroCurso fkcursoNew = tbCadastroDisciplinas.getFkcurso();
             List<TbCadastroQuestoes> tbCadastroQuestoesListOld = persistentTbCadastroDisciplinas.getTbCadastroQuestoesList();
             List<TbCadastroQuestoes> tbCadastroQuestoesListNew = tbCadastroDisciplinas.getTbCadastroQuestoesList();
-            if (fkCursoNew != null) {
-                fkCursoNew = em.getReference(fkCursoNew.getClass(), fkCursoNew.getIdCurso());
-                tbCadastroDisciplinas.setFkCurso(fkCursoNew);
+            if (fkcursoNew != null) {
+                fkcursoNew = em.getReference(fkcursoNew.getClass(), fkcursoNew.getIdCurso());
+                tbCadastroDisciplinas.setFkcurso(fkcursoNew);
             }
             List<TbCadastroQuestoes> attachedTbCadastroQuestoesListNew = new ArrayList<TbCadastroQuestoes>();
             for (TbCadastroQuestoes tbCadastroQuestoesListNewTbCadastroQuestoesToAttach : tbCadastroQuestoesListNew) {
@@ -103,13 +97,13 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
             tbCadastroQuestoesListNew = attachedTbCadastroQuestoesListNew;
             tbCadastroDisciplinas.setTbCadastroQuestoesList(tbCadastroQuestoesListNew);
             tbCadastroDisciplinas = em.merge(tbCadastroDisciplinas);
-            if (fkCursoOld != null && !fkCursoOld.equals(fkCursoNew)) {
-                fkCursoOld.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinas);
-                fkCursoOld = em.merge(fkCursoOld);
+            if (fkcursoOld != null && !fkcursoOld.equals(fkcursoNew)) {
+                fkcursoOld.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinas);
+                fkcursoOld = em.merge(fkcursoOld);
             }
-            if (fkCursoNew != null && !fkCursoNew.equals(fkCursoOld)) {
-                fkCursoNew.getTbCadastroDisciplinasList().add(tbCadastroDisciplinas);
-                fkCursoNew = em.merge(fkCursoNew);
+            if (fkcursoNew != null && !fkcursoNew.equals(fkcursoOld)) {
+                fkcursoNew.getTbCadastroDisciplinasList().add(tbCadastroDisciplinas);
+                fkcursoNew = em.merge(fkcursoNew);
             }
             for (TbCadastroQuestoes tbCadastroQuestoesListOldTbCadastroQuestoes : tbCadastroQuestoesListOld) {
                 if (!tbCadastroQuestoesListNew.contains(tbCadastroQuestoesListOldTbCadastroQuestoes)) {
@@ -157,10 +151,10 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The tbCadastroDisciplinas with id " + id + " no longer exists.", enfe);
             }
-            TbCadastroCurso fkCurso = tbCadastroDisciplinas.getFkCurso();
-            if (fkCurso != null) {
-                fkCurso.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinas);
-                fkCurso = em.merge(fkCurso);
+            TbCadastroCurso fkcurso = tbCadastroDisciplinas.getFkcurso();
+            if (fkcurso != null) {
+                fkcurso.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinas);
+                fkcurso = em.merge(fkcurso);
             }
             List<TbCadastroQuestoes> tbCadastroQuestoesList = tbCadastroDisciplinas.getTbCadastroQuestoesList();
             for (TbCadastroQuestoes tbCadastroQuestoesListTbCadastroQuestoes : tbCadastroQuestoesList) {

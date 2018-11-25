@@ -6,7 +6,6 @@
 package dao;
 
 import dao.exceptions.NonexistentEntityException;
-import dao.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
@@ -34,7 +33,7 @@ public class TbCadastroCursoJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TbCadastroCurso tbCadastroCurso) throws PreexistingEntityException, Exception {
+    public void create(TbCadastroCurso tbCadastroCurso) {
         if (tbCadastroCurso.getTbCadastroDisciplinasList() == null) {
             tbCadastroCurso.setTbCadastroDisciplinasList(new ArrayList<TbCadastroDisciplinas>());
         }
@@ -50,20 +49,15 @@ public class TbCadastroCursoJpaController implements Serializable {
             tbCadastroCurso.setTbCadastroDisciplinasList(attachedTbCadastroDisciplinasList);
             em.persist(tbCadastroCurso);
             for (TbCadastroDisciplinas tbCadastroDisciplinasListTbCadastroDisciplinas : tbCadastroCurso.getTbCadastroDisciplinasList()) {
-                TbCadastroCurso oldFkCursoOfTbCadastroDisciplinasListTbCadastroDisciplinas = tbCadastroDisciplinasListTbCadastroDisciplinas.getFkCurso();
-                tbCadastroDisciplinasListTbCadastroDisciplinas.setFkCurso(tbCadastroCurso);
+                TbCadastroCurso oldFkcursoOfTbCadastroDisciplinasListTbCadastroDisciplinas = tbCadastroDisciplinasListTbCadastroDisciplinas.getFkcurso();
+                tbCadastroDisciplinasListTbCadastroDisciplinas.setFkcurso(tbCadastroCurso);
                 tbCadastroDisciplinasListTbCadastroDisciplinas = em.merge(tbCadastroDisciplinasListTbCadastroDisciplinas);
-                if (oldFkCursoOfTbCadastroDisciplinasListTbCadastroDisciplinas != null) {
-                    oldFkCursoOfTbCadastroDisciplinasListTbCadastroDisciplinas.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinasListTbCadastroDisciplinas);
-                    oldFkCursoOfTbCadastroDisciplinasListTbCadastroDisciplinas = em.merge(oldFkCursoOfTbCadastroDisciplinasListTbCadastroDisciplinas);
+                if (oldFkcursoOfTbCadastroDisciplinasListTbCadastroDisciplinas != null) {
+                    oldFkcursoOfTbCadastroDisciplinasListTbCadastroDisciplinas.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinasListTbCadastroDisciplinas);
+                    oldFkcursoOfTbCadastroDisciplinasListTbCadastroDisciplinas = em.merge(oldFkcursoOfTbCadastroDisciplinasListTbCadastroDisciplinas);
                 }
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTbCadastroCurso(tbCadastroCurso.getIdCurso()) != null) {
-                throw new PreexistingEntityException("TbCadastroCurso " + tbCadastroCurso + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();
@@ -89,18 +83,18 @@ public class TbCadastroCursoJpaController implements Serializable {
             tbCadastroCurso = em.merge(tbCadastroCurso);
             for (TbCadastroDisciplinas tbCadastroDisciplinasListOldTbCadastroDisciplinas : tbCadastroDisciplinasListOld) {
                 if (!tbCadastroDisciplinasListNew.contains(tbCadastroDisciplinasListOldTbCadastroDisciplinas)) {
-                    tbCadastroDisciplinasListOldTbCadastroDisciplinas.setFkCurso(null);
+                    tbCadastroDisciplinasListOldTbCadastroDisciplinas.setFkcurso(null);
                     tbCadastroDisciplinasListOldTbCadastroDisciplinas = em.merge(tbCadastroDisciplinasListOldTbCadastroDisciplinas);
                 }
             }
             for (TbCadastroDisciplinas tbCadastroDisciplinasListNewTbCadastroDisciplinas : tbCadastroDisciplinasListNew) {
                 if (!tbCadastroDisciplinasListOld.contains(tbCadastroDisciplinasListNewTbCadastroDisciplinas)) {
-                    TbCadastroCurso oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas = tbCadastroDisciplinasListNewTbCadastroDisciplinas.getFkCurso();
-                    tbCadastroDisciplinasListNewTbCadastroDisciplinas.setFkCurso(tbCadastroCurso);
+                    TbCadastroCurso oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas = tbCadastroDisciplinasListNewTbCadastroDisciplinas.getFkcurso();
+                    tbCadastroDisciplinasListNewTbCadastroDisciplinas.setFkcurso(tbCadastroCurso);
                     tbCadastroDisciplinasListNewTbCadastroDisciplinas = em.merge(tbCadastroDisciplinasListNewTbCadastroDisciplinas);
-                    if (oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas != null && !oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas.equals(tbCadastroCurso)) {
-                        oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinasListNewTbCadastroDisciplinas);
-                        oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas = em.merge(oldFkCursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas);
+                    if (oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas != null && !oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas.equals(tbCadastroCurso)) {
+                        oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas.getTbCadastroDisciplinasList().remove(tbCadastroDisciplinasListNewTbCadastroDisciplinas);
+                        oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas = em.merge(oldFkcursoOfTbCadastroDisciplinasListNewTbCadastroDisciplinas);
                     }
                 }
             }
@@ -135,7 +129,7 @@ public class TbCadastroCursoJpaController implements Serializable {
             }
             List<TbCadastroDisciplinas> tbCadastroDisciplinasList = tbCadastroCurso.getTbCadastroDisciplinasList();
             for (TbCadastroDisciplinas tbCadastroDisciplinasListTbCadastroDisciplinas : tbCadastroDisciplinasList) {
-                tbCadastroDisciplinasListTbCadastroDisciplinas.setFkCurso(null);
+                tbCadastroDisciplinasListTbCadastroDisciplinas.setFkcurso(null);
                 tbCadastroDisciplinasListTbCadastroDisciplinas = em.merge(tbCadastroDisciplinasListTbCadastroDisciplinas);
             }
             em.remove(tbCadastroCurso);

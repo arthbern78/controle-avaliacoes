@@ -146,8 +146,26 @@ public class Controle_Avaliacoes {
             Logger.getLogger(Controle_Avaliacoes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
+    public void excluirCurso(TbCadastroCurso curso){
+        try{
+            daocurso.destroy(curso.getIdCurso());
+        }
+        catch(NonexistentEntityException ex){
+            Logger.getLogger(Controle_Avaliacoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     public void excluirDisciplina(){
+        try{
+            daodisciplina.destroy(disciplina.getIdDisciplina());
+        }
+        catch(NonexistentEntityException ex){
+            Logger.getLogger(Controle_Avaliacoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     public void excluirDisciplina(TbCadastroDisciplinas disciplina){
         try{
             daodisciplina.destroy(disciplina.getIdDisciplina());
         }
@@ -164,6 +182,16 @@ public class Controle_Avaliacoes {
             Logger.getLogger(Controle_Avaliacoes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void excluirQuestoes(TbCadastroQuestoes questoes){
+        try{
+            daoquestoes.destroy(questoes.getIdQuestoes());
+        }
+        catch(NonexistentEntityException ex){
+            Logger.getLogger(Controle_Avaliacoes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public List<TbCadastroCurso> listarCurso(){
         return daocurso.findTbCadastroCursoEntities();
     }

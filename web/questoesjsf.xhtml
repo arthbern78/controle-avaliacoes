@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet"/>
               <title>CONTROLE DE AVALIAÇÕES</title>
         <style>
             html, body {
@@ -36,7 +36,7 @@
                 float: left;
                 width: 100%;
                 height: 200px;
-                background-image: url(../imagens/escolar3.jpg);
+                background-image: url(escolar3.jpg);
                 position: relative;
                 margin-bottom: 5px;
             }
@@ -78,6 +78,12 @@
             
             .conteudo {
                 margin-left: 20px;
+                margin-top: 20px;
+                 width: 78%;
+                height: 800px;
+                background-color: azure;
+                float: right;
+                position: relative;
             }
             
             .conteudo h1 {
@@ -107,14 +113,6 @@
                 width: 100%;
             }
 
-            .conteudo {
-                width: 78%;
-                height: 500px;
-                background-color: azure;
-                float: right;
-                position: relative;
-            }
-
             footer {
                 clear: both;
                 width: 100%;
@@ -140,47 +138,30 @@
             <section class="menu">
                 <nav>
                     <ul>
-                        <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
+                        <li><a href="Controle_Avaliacoesjsf.xhtml" style="text-shadow: 2px 1px">Página Inicial</a>
                         </li>
-                        <li><a href="curso.html">Curso</a>
+                        <li><a href="cursojsf.xhtml">Questões</a>
                         </li>
-                        <li><a href="disciplina.html">Disciplinas</a>
+                        <li><a href="disciplinajsf.xhtml">Disciplinas</a>
                         </li>
-                        <li><a href="escola.html">Sobre a Escola</a>
+                        <li><a href="escolajsf.xhtml">Sobre a Escola</a>
                         </li>
                         <li><a href="contato.html">Contato</a>
                         </li>
-                        <li><a href="fotos.html">
+                        <li><a href="fotosjsf.xhtml">
                             Fotos
-                            <img src="../imagens/faculdade2ed.jpg">
+                            <img src="faculdade2ed.jpg"/>
                             </a></li>
                     </ul>
                 </nav>
             
             </section>
             <section class="conteudo">
-                <br>
-                <br>
+                <br/>
+                <br/>
                 <h1>CADASTRO DE QUESTÕES</h1>
                 <form jsf:id="form">
-                    <div class="container">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toogle" type="button"
-                                    id="menu3" data-toogle="dropdown"> Questões <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu3">
-                                <ui:repeat var="listaQuestoes" value="#{controle_Avaliacoes.lista_questoes}">
-                                    <li role="presentation">
-                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setQuestoes(listaQuestoes)}">
-                                            #{listaQuestoes.idQuestoes}
-                                        </a>
-                                    </li>
-                                </ui:repeat>
-                            </ul>
-                        </div>
-                    </div>
-                    <br />
-                    <div style="width: 60%">
+                    <div style="width: 30%">
                         <div class="form-group">
                             <label>Código da Disciplina</label>
                             <input type="text" placeholder="Entre com o código da Disciplina"
@@ -213,12 +194,10 @@
                            jsf:action="#{controle_Avaliacoes.inserirQuestoes()}">Salvar</a>
                         <a href="#" class="btn btn-success" style="margin-right: 10px"
                            jsf:action="#{controle_Avaliacoes.alterarQuestoes()}">Alterar</a>
-                        <a href="#" class="btn btn-danger"
-                           jsf:action="#{controle_Avaliacoes.excluirQuestoes()}">Excluir</a>
                     </div>
                     <br />
                     <br />
-                    <div style="width: 60%">
+                    <div style="width: 40%">
                         <table class="table table-striped">
                             <tr>
                                 <td>Código da Questão</td>
@@ -227,13 +206,14 @@
                                 <td>Resposta da Questão</td>
                                 <td>Tipo da Avaliação</td>
                             </tr>
-                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarQuestoes}">
+                            <ui:repeat var="q" value="#{controle_Avaliacoes.listarQuestoes()}">
                                 <tr>
-                                    <td>#{c.idQuestoes}</td>
-                                    <td>#{c.fkDisciplina}</td>
-                                    <td>#{c.descricao}</td>
-                                    <td>#{c.resposta}</td>
-                                    <td>#{c.tipoAvaliacao}</td>
+                                    <td>#{q.idQuestoes}</td>
+                                    <td><a role="menuitem" href="#" jsf:action="#{controle_Avaliacoes.setQuestoes(q)}"> #{q.fkDisciplina}</a></td>
+                                    <td>#{q.descricao}</td>
+                                    <td>#{q.resposta}</td>
+                                    <td>#{q.tipoAvaliacao}</td>
+                                    <td><a href="#" class="btn btn-danger" jsf:action="#{controle_Avaliacoes.excluirQuestoes()}">X</a></td>
                                 </tr>
                             </ui:repeat>
                         </table>
@@ -247,7 +227,7 @@
                 </div>
             </section>
             <footer>
-                <br>
+                <br/>
                 <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
             </footer>
         </main>

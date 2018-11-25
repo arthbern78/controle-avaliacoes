@@ -10,6 +10,8 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -30,22 +32,23 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "TbCadastroDisciplinas.findAll", query = "SELECT t FROM TbCadastroDisciplinas t")
     , @NamedQuery(name = "TbCadastroDisciplinas.findByIdDisciplina", query = "SELECT t FROM TbCadastroDisciplinas t WHERE t.idDisciplina = :idDisciplina")
-    , @NamedQuery(name = "TbCadastroDisciplinas.findByNomeDisciplina", query = "SELECT t FROM TbCadastroDisciplinas t WHERE t.nomeDisciplina = :nomeDisciplina")
+    , @NamedQuery(name = "TbCadastroDisciplinas.findByNomedisciplina", query = "SELECT t FROM TbCadastroDisciplinas t WHERE t.nomedisciplina = :nomedisciplina")
     , @NamedQuery(name = "TbCadastroDisciplinas.findBySemestre", query = "SELECT t FROM TbCadastroDisciplinas t WHERE t.semestre = :semestre")})
 public class TbCadastroDisciplinas implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id_disciplina")
     private Integer idDisciplina;
-    @Column(name = "nome_disciplina")
-    private String nomeDisciplina;
+    @Column(name = "nomedisciplina")
+    private String nomedisciplina;
     @Column(name = "semestre")
     private Integer semestre;
-    @JoinColumn(name = "fk_curso", referencedColumnName = "id_curso")
+    @JoinColumn(name = "fkcurso", referencedColumnName = "id_curso")
     @ManyToOne
-    private TbCadastroCurso fkCurso;
+    private TbCadastroCurso fkcurso;
     @OneToMany(mappedBy = "fkDisciplina")
     private List<TbCadastroQuestoes> tbCadastroQuestoesList;
 
@@ -64,12 +67,12 @@ public class TbCadastroDisciplinas implements Serializable {
         this.idDisciplina = idDisciplina;
     }
 
-    public String getNomeDisciplina() {
-        return nomeDisciplina;
+    public String getNomedisciplina() {
+        return nomedisciplina;
     }
 
-    public void setNomeDisciplina(String nomeDisciplina) {
-        this.nomeDisciplina = nomeDisciplina;
+    public void setNomedisciplina(String nomedisciplina) {
+        this.nomedisciplina = nomedisciplina;
     }
 
     public Integer getSemestre() {
@@ -80,12 +83,12 @@ public class TbCadastroDisciplinas implements Serializable {
         this.semestre = semestre;
     }
 
-    public TbCadastroCurso getFkCurso() {
-        return fkCurso;
+    public TbCadastroCurso getFkcurso() {
+        return fkcurso;
     }
 
-    public void setFkCurso(TbCadastroCurso fkCurso) {
-        this.fkCurso = fkCurso;
+    public void setFkcurso(TbCadastroCurso fkcurso) {
+        this.fkcurso = fkcurso;
     }
 
     @XmlTransient

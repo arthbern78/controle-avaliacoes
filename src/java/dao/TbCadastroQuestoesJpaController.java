@@ -6,7 +6,6 @@
 package dao;
 
 import dao.exceptions.NonexistentEntityException;
-import dao.exceptions.PreexistingEntityException;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -33,7 +32,7 @@ public class TbCadastroQuestoesJpaController implements Serializable {
         return emf.createEntityManager();
     }
 
-    public void create(TbCadastroQuestoes tbCadastroQuestoes) throws PreexistingEntityException, Exception {
+    public void create(TbCadastroQuestoes tbCadastroQuestoes) {
         EntityManager em = null;
         try {
             em = getEntityManager();
@@ -49,11 +48,6 @@ public class TbCadastroQuestoesJpaController implements Serializable {
                 fkDisciplina = em.merge(fkDisciplina);
             }
             em.getTransaction().commit();
-        } catch (Exception ex) {
-            if (findTbCadastroQuestoes(tbCadastroQuestoes.getIdQuestoes()) != null) {
-                throw new PreexistingEntityException("TbCadastroQuestoes " + tbCadastroQuestoes + " already exists.", ex);
-            }
-            throw ex;
         } finally {
             if (em != null) {
                 em.close();

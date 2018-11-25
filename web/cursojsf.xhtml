@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet"/>
               <title>CONTROLE DE AVALIAÇÕES</title>
         <style>
             html, body {
@@ -36,15 +36,16 @@
                 float: left;
                 width: 100%;
                 height: 200px;
-                background-image: url(../imagens/escolar3.jpg);
+                background-image: url(escolar3.jpg);
                 position: relative;
                 margin-bottom: 5px;
             }
             
             header h1 {
+                margin-top: 50px;
                 width: 100%;
                 text-align: center;
-                font-size: 64px; 
+                font-size: 80px; 
                 font-family: Arial, sans-serif;
                 text-shadow: 1px 1px;
                 color:blue;
@@ -77,15 +78,22 @@
             }
             
             .conteudo {
-                margin-left: 20px;
+                margin-left: 80px;
+                margin-bottom: 40px;
+                width: 50%;
+                height: 800px;
+                background-color: azure;
+                float: left;
+                position: relative;
             }
             
             .conteudo h1 {
-                font-size: 30px;
+                font-size: 50px;
+                margin-bottom: 30px;
             }
             
             .conteudo h2 {
-                font-size: 20px;
+                font-size: 30px;
             }
             
             .conteudo ul {
@@ -106,21 +114,22 @@
             .menu img {
                 width: 100%;
             }
-
-            .conteudo {
-                width: 78%;
-                height: 500px;
-                background-color: azure;
-                float: right;
+            
+            .apoio {
+                margin-left: 20px;
+                width: 50px;
+                height: 300px;
+                float: left;
                 position: relative;
             }
-
+            
             footer {
                 clear: both;
                 width: 100%;
                 height: 5%;
                 background-color: rgb(134,186,249);
                 position: relative;
+                margin-top: 30px;
             }
             
             footer p {
@@ -134,53 +143,35 @@
         <main>
             <header>
                 <h1>Controle de Avaliações</h1>    
-                
             </header>
             
             <section class="menu">
                 <nav>
                     <ul>
-                        <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
+                        <li><a href="Controle_Avaliacoesjsf.xhtml" style="text-shadow: 2px 1px">Página Inicial</a>
                         </li>
-                        <li><a href="disciplina.html">Disciplinas</a>
+                        <li><a href="disciplinajsf.xhtml">Disciplinas</a>
                         </li>
-                        <li><a href="questoes.html">Questões</a>
+                        <li><a href="questoesjsf.xhtml">Questões</a>
                         </li>
-                        <li><a href="escola.html">Sobre a Escola</a>
+                        <li><a href="escolajsf.xhtml">Sobre a Escola</a>
                         </li>
                         <li><a href="contato.html">Contato</a>
                         </li>
-                        <li><a href="fotos.html">
+                        <li><a href="fotosjsf.xhtml">
                             Fotos
-                            <img src="../imagens/faculdade2ed.jpg">
+                            <img src="faculdade2ed.jpg"/>
                             </a></li>
                     </ul>
                 </nav>
             
             </section>
             <section class="conteudo">
-                <br>
-                <br>
+                <br/>
+                <br/>
                 <h1>CADASTRO DE CURSOS</h1>
                 <form jsf:id="form">
-                    <div class="container">
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toogle" type="button"
-                                    id="menu1" data-toogle="dropdown"> Cursos <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                <ui:repeat var="listaCurso" value="#{controle_Avaliacoes.listarCurso()}">
-                                    <li role="presentation">
-                                        <a role="menuitem" tabindex="-l" href="#" jsf:action="#{controle_Avaliacoes.setCurso(listaCurso)}">
-                                            #{listaCurso.nomeCurso}
-                                        </a>
-                                    </li>
-                                </ui:repeat>
-                            </ul>
-                        </div>
-                    </div>
-                    <br />
-                    <div style="width: 60%">
+                    <div style="width: 40%">
                         <div class="form-group">
                             <label>Nome do Curso</label>
                             <input type="text" placeholder="Entre com o nome do Curso"
@@ -199,22 +190,23 @@
                            jsf:action="#{controle_Avaliacoes.inserirCurso()}">Salvar</a>
                         <a href="#" class="btn btn-success" style="margin-right: 10px"
                            jsf:action="#{controle_Avaliacoes.alterarCurso()}">Alterar</a>
-                        <a href="#" class="btn btn-danger"
-                           jsf:action="#{controle_Avaliacoes.excluirCurso()}">Excluir</a>
+                  
                     </div>
                     <br />
                     <br />
-                    <div style="width: 60%">
+                    <div style="width: 55%">
                         <table class="table table-striped">
                             <tr>
+                                <td>ID do Curso</td>
                                 <td>Nome do Curso</td>
                                 <td>Número de Semestres</td>
                             </tr>
-                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarCurso}">
+                            <ui:repeat var="c" value="#{controle_Avaliacoes.listarCurso()}">
                                 <tr>
                                     <td>#{c.idCurso}</td>
-                                    <td>#{c.nomeCurso}</td>
+                                    <td><a role="menuitem" href="#" jsf:action="#{controle_Avaliacoes.setCurso(c)}"> #{c.nomeCurso}</a></td>
                                     <td>#{c.qtdeSemestres}</td>
+                                    <td><a href="#" class="btn btn-danger" jsf:action="#{controle_Avaliacoes.excluirCurso(c)}">X</a></td>
                                 </tr>
                             </ui:repeat>
                         </table>
@@ -224,12 +216,10 @@
             </section>
                 
             <section class="apoio">  
-                <div class="panel panel-default">
-                    
-                </div>
+                <img src="escolar4.jpg" style="width: 400px; height: 800px;" />
             </section>
             <footer>
-                <br>
+                <br/>
                 <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
             </footer>
         </main>

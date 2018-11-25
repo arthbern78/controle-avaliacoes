@@ -1,10 +1,11 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <head>
-        <meta charset="utf-8">
+        <meta charset="utf-8" />
         <title>Curso de CSS</title>
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Libre+Baskerville" rel="stylesheet" />
         
         <style>
             html, body {
@@ -32,7 +33,7 @@
                 float: left;
                 width: 100%;
                 height: 200px;
-                background-image: url(../imagens/escolar3.jpg);
+                background-image: url(../imagens/escolar3);
                 position: relative;
                 margin-bottom: 5px;
             }
@@ -137,7 +138,7 @@
             <section class="menu">
                 <nav>
                     <ul>
-                        <li><a href="curso.html">Cursos</a>
+                        <li><a href="aplicar_grid.html" style="text-shadow: 2px 1px">Página Inicial</a>
                         </li>
                         <li><a href="disciplina.html">Disciplinas</a>
                         </li>
@@ -149,31 +150,42 @@
                         </li>
                         <li><a href="fotos.html">
                             Fotos
-                            <img src="../imagens/faculdade2ed.jpg">
+                            <img src="../imagens/faculdade2ed.jpg" />
                             </a></li>
                     </ul>
                 </nav>
             
             </section>
             <section class="conteudo">
-                <h1>Saiu a lista de prováveis formandos 2018/1</h1>
-                <figure>
-                    <img src="../imagens/faculdadeed.jpg" width="500px" title="Saiu a lista de prováveis formandos 2018/1" style="float:left;margin-right: 30px;border: 1px solid #666">
-                </figure>
-                <h2>Saiba os procedimentos necessários para sua colação de grau:</h2>
-                <p>- Todos os alunos devem solicitar sua colação de grau, exclusivamente via web, pelo Portal do Aluno. Acesse o Requerimento web em Conclusão de Curso e opte pela Solicitação de Formatura em Gabinete ou pela Solicitação de Formatura em Solenidade.</p>
-                <p>- Todos os alunos devem entregar a documentação necessária para colação de grau via Secretaria Acadêmica ou Portal do Aluno (Requerimento Web – Conclusão de Curso – Recebimento de documentos formandos):</p>
-                <ul>
-                    <li>Cópia Simples do Registro Geral (RG);</li>
-                    <li>Cópia Simples do Histórico do Ensino Médio;</li>
-                    <li>Cópia Simples do Certificado de Conclusão do Ensino Médio;</li>
-                    <li>Cópia Simples do Registro Civil (Certidão de Nascimento, Casamento ou Divórcio).</li>
-                </ul>
-                <p style="text-indent: 40px;">A leitura do Guia de Formaturas é uma etapa fundamental no seu processo de formatura. É a partir desse documento que você fica informado sobre os procedimentos necessários para sua colação de grau (Solenidade, Gabinete Coletivo e Individual). Além do Guia, a página de Formaturas dispõe do calendário de formaturas e formulários para as comissões de formatura.</p>
+                <br/>
+                <br/>
+                
+                <h1>Gerenciador de Cursos</h1><br/>
+                <div class="conteiner">
+                    <form action="destino.html" method="post">
+                        <fieldset>
+                            <legend class="text-primary">Formulário de Cursos</legend>
+                            <label for="nome_curso">Nome do Curso</label>
+                            <input class="form-control" type="text" name="nome_curso" id="nome_curso" placeholder="Nome do Curso"/><br/><br/>
+                            <label for="qtd_semestres">Número de Semestre do Curso</label>
+                            <input class="form-control" type="text" name="qtd_semestres" id="qtd_semestres" placeholder="Número Semestres"/><br /><br />
+                            <div class="form-inline">
+                                <input class="btn btn-primary pull-left" type="submit" value="Cadastrar" id="cadastrar" name="cadastrar"/>
+                                <input class="btn btn-primary pull-right" value="Buscar" id="buscar" name="buscar"/>
+                                <input class="btn btn-primary pull-right" value="Deletar" id="deletar" name="deletar"/>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </section>
-            
+                
+            <section class="apoio">  
+                <div class="panel panel-default">
+                    
+                </div>
+            </section>
             <footer>
-                <br>
+                <br />
                 <p>FASD - FACULDADE DE ANÁLISE DE SISTEMAS - Rua das Esmeraldas, número 100 - Jardim Belo -  CEP 10.100-100 - São Paulo - SP</p>
             </footer>
         </main>
