@@ -52,9 +52,9 @@ public class TbCadastroDisciplinasJpaController implements Serializable {
                 tbCadastroQuestoesListTbCadastroQuestoesToAttach = em.getReference(tbCadastroQuestoesListTbCadastroQuestoesToAttach.getClass(), tbCadastroQuestoesListTbCadastroQuestoesToAttach.getIdQuestoes());
                 attachedTbCadastroQuestoesList.add(tbCadastroQuestoesListTbCadastroQuestoesToAttach);
             }
-            tbCadastroDisciplinas.setTbCadastroQuestoesList(attachedTbCadastroQuestoesList);
+            tbCadastroDisciplinas.setTbCadastroQuestoesList(attachedTbCadastroQuestoesList); 
             em.persist(tbCadastroDisciplinas);
-            if (fkcurso != null) {
+           if (fkcurso != null) {
                 fkcurso.getTbCadastroDisciplinasList().add(tbCadastroDisciplinas);
                 fkcurso = em.merge(fkcurso);
             }

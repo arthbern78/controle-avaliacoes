@@ -9,6 +9,7 @@ import dao.TbCadastroCursoJpaController;
 import dao.TbCadastroDisciplinasJpaController;
 import dao.TbCadastroQuestoesJpaController;
 import dao.exceptions.NonexistentEntityException;
+import java.awt.Cursor;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,6 +38,27 @@ public class Controle_Avaliacoes {
     private TbCadastroCursoJpaController daocurso;
     private TbCadastroDisciplinasJpaController daodisciplina;
     private TbCadastroQuestoesJpaController daoquestoes;
+    private int idCurso;
+    private int idDisciplina;
+
+    public int getIdDisciplina() {
+        return idDisciplina;
+    }
+
+    public void setIdDisciplina(int idDisciplina) {
+        this.idDisciplina = idDisciplina;
+    }
+    
+    
+    public int getIdCurso() {
+        return idCurso;
+    }
+
+    public void setIdCurso(int idCurso) {
+        this.idCurso = idCurso;
+    }
+    
+    
     
     public Controle_Avaliacoes() {
         curso = new TbCadastroCurso();
@@ -92,10 +114,16 @@ public class Controle_Avaliacoes {
     }
     
     public void inserirDisciplina() throws Exception{
+        TbCadastroCurso curso1 = new TbCadastroCurso();
+        curso1.setIdCurso(idCurso);
+        disciplina.setFkcurso(curso1);
         daodisciplina.create(disciplina);
     }
     
     public void inserirQuestoes() throws Exception{
+        TbCadastroDisciplinas disciplina1 = new TbCadastroDisciplinas();
+        disciplina1.setIdDisciplina(idDisciplina);
+        questoes.setFkDisciplina(disciplina1);
         daoquestoes.create(questoes);
     }
     

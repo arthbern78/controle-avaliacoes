@@ -43,9 +43,10 @@
             }
             
             header h1 {
+                margin-top: 50px;
                 width: 100%;
                 text-align: center;
-                font-size: 64px; 
+                font-size: 80px; 
                 font-family: Arial, sans-serif;
                 text-shadow: 1px 1px;
                 color:blue;
@@ -78,21 +79,22 @@
             }
             
             .conteudo {
-                margin-left: 20px;
-                margin-bottom: 20px;
-                width: 78%;
+                margin-left: 80px;
+                margin-bottom: 40px;
+                width: 50%;
                 height: 800px;
                 background-color: azure;
-                float: right;
+                float: left;
                 position: relative;
             }
             
             .conteudo h1 {
-                font-size: 30px;
+                font-size: 50px;
+                margin-bottom: 30px;
             }
             
             .conteudo h2 {
-                font-size: 20px;
+                font-size: 30px;
             }
             
             .conteudo ul {
@@ -113,13 +115,22 @@
             .menu img {
                 width: 100%;
             }
-
+            
+            .apoio {
+                margin-left: 20px;
+                width: 50px;
+                height: 300px;
+                float: left;
+                position: relative;
+            }
+            
             footer {
                 clear: both;
                 width: 100%;
                 height: 5%;
                 background-color: rgb(134,186,249);
                 position: relative;
+                margin-top: 30px;
             }
             
             footer p {
@@ -181,7 +192,7 @@
                             <label>Código do Curso</label>
                             <input type="text" placeholder="Entre com o Código do Curso"
                                    class="form-control"
-                                   jsf:value="#{controle_Avaliacoes.disciplina.fkcurso}"/>
+                                   jsf:value="#{controle_Avaliacoes.idCurso}"/>
                         </div>
                         <br />
                         <a href="#" class="btn btn-primary" style="margin-right: 10px"
@@ -197,18 +208,23 @@
                                 <td>Código da Disciplina</td>
                                 <td>Nome da Disciplina</td>
                                 <td>Semestre da Disciplina</td>
+                                <td>Semestre da Disciplina</td>
                             </tr>
                             <ui:repeat var="d" value="#{controle_Avaliacoes.listarDisciplinas()}">
                                 <tr>
+                                    <td>#{d.idDisciplina}</td>
                                     <td><a role="menuitem" href="#" jsf:action="#{controle_Avaliacoes.setDisciplina(d)}"> #{d.nomedisciplina}</a></td>
                                     <td>#{d.semestre}</td>
-                                    <td>#{d.fkcurso}</td>
+                                    <td>#{d.fkcurso.idCurso}</td>
                                     <td><a href="#" class="btn btn-danger" jsf:action="#{controle_Avaliacoes.excluirDisciplina(d)}">X</a></td>
                                 </tr>
                             </ui:repeat>
                         </table>
                     </div>
                 </form>     
+            </section>
+            <section class="apoio">  
+                <img src="escolar4.jpg" style="width: 400px; height: 800px;" />
             </section>
             <footer>
                 <br/>
